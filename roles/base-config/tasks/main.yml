@@ -9,6 +9,11 @@
     backup: yes
 
 - name: enable repos
+  shell: yum repolist
  
 - name: install base tools and packages
+  yum:
+    name: '*'
+    state: latest
+ 
 

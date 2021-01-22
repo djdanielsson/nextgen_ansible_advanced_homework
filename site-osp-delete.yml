@@ -1,5 +1,5 @@
 - hosts: localhost
   connection: local
-  become: yes
+  become: no
   roles:
     - osp-instance-delete

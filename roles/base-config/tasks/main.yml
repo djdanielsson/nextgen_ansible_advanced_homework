@@ -8,8 +8,7 @@
     replace: 'Defaults  !requiretty'
     backup: yes
 
-- name: enable repos
-  shell: yum repolist
+#- name: enable repos
  
 - name: install base tools and packages
   yum:

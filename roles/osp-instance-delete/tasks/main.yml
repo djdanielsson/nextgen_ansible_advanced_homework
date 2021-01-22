@@ -19,7 +19,7 @@
     cloud: openstack
     state: absent
     reuse: yes
-    server: "{{ item.metadata.name }}"
+    server: "{{ item.name }}"
     network: ext_network
     wait: true
     timeout: 200
@@ -28,7 +28,7 @@
 - name: Delete instances
   os_server:
     cloud: openstack
-    name: "{{ item.metadata.name }}"
+    name: "{{ item.name }}"
     state: absent
   loop: "{{ r_os_servers.openstack_servers }}"
 

@@ -1,10 +1,4 @@
 ---
-- name: add IP for db to hosts file for app1 and app2
-  lineinfile:
-    path: /etc/hosts
-    insertafter: EOF
-    line: "{{ DB_IP }} appdb1"
-
 - name: Create flask user
   user:
     name: "{{ flask_user }}"

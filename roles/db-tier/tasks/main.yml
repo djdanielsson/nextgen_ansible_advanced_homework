@@ -1,3 +1,8 @@
+---
+- name: setfact
+  set_fact:
+    DB_IP: "{{ ansible_default_ipv4.address }}" 
+
 - name: Install Postgres packages
   package:
     name: "{{ __package }}"

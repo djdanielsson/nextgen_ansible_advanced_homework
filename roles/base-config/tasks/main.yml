@@ -21,19 +21,10 @@
     name: '*'
     state: latest
 
-- name: test
-  debug:
-    msg: "{{ hostvars }}"
-
-- name: try
-  set_fact: 
-    ansible_hostname: 'db'
-  when: ansible_nodename == 'db'
-
-- name: add IP for db to hosts file for app1 and app2
-  lineinfile:
-    path: /etc/hosts
-    insertafter: EOF
-    line: "{{ hostvars['db']['ansible_default_ipv4']['address'] }} appdb1"
-  when: ansible_nodename == 'app1' or ansible_nodename == 'app2'
+#- name: add IP for db to hosts file for app1 and app2
+#  lineinfile:
+#    path: /etc/hosts
+#    insertafter: EOF
+#    line: "{{ hostvars['db']['ansible_default_ipv4']['address'] }} appdb1"
+#  when: ansible_nodename == 'app1' or ansible_nodename == 'app2'
 

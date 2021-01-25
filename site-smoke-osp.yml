@@ -28,14 +28,6 @@
        ansible_ssh_user: cloud-user
       loop: "{{ r_os_servers.openstack_servers }}"
 
-    - name: test
-      debug:
-        msg: "{{ r_os_servers.openstack_servers.name }}"
-
-    - name: test2
-      debug:
-        msg: "{{ r_os_servers.openstack_servers.name.public_v4 }}"
-
     - name: Curl website
       uri:
         url: "http://{{ r_os_servers.openstack_servers.name.public_v4 }}/ping"

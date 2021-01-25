@@ -30,7 +30,7 @@
 
     - name: test
       debug:
-        msg: {{ r_os_servers.openstack_servers.
+        msg: "{{ r_os_servers.openstack_servers }}"
 
     - name: Curl website
       uri:

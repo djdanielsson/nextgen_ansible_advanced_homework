@@ -1,6 +1,6 @@
 ---
 - name: smoke test
-  hosts: workstation
+  hosts: localhost
   gather_facts: false
   tasks:
     - name: OpenStack servers

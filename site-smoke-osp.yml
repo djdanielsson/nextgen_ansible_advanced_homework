@@ -30,12 +30,13 @@
 
     - name: Curl website
       uri:
-        url: "http://{{ r_os_servers.openstack_servers.name.public_v4 }}/ping"
+        url: "http://{{ item.public_v4 }}/ping"
         return_content: yes
         status_code: 200
       register: webpage
       delegate_to: localhost
-      when: "{{ r_os_servers.openstack_servers.name }} == frontend"
+      when: "{{ item.name }} == frontend"
+      loop: "{{ r_os_servers.openstack_servers }}"
 
     - name: Fail if 'Ansible has done its job' is not in the page content
       fail:

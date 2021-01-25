@@ -8,7 +8,7 @@
 
 - name: testing frontend
   hosts: frontend
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: Curl website
       uri:

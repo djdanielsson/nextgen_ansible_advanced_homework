@@ -3,40 +3,20 @@
   hosts: localhost
   connection: local
   gather_facts: false
-  tasks:
-    - name: OpenStack servers
-      os_server_info:
-        cloud: openstack
-        region_name: regionOne
-      register: r_os_servers
-    
-    - name: Add host
-      add_host:
-       hostname: "{{ item.name }}"
-       ansible_host: "{{ item.public_v4 }}"
-       group: "{{ item.metadata.group }}"
-       ansible_ssh_private_key_file: ~/.ssh/openstack.pem
-       ansible_ssh_user: cloud-user
-      loop: "{{ r_os_servers.openstack_servers }}"
-    
-    - name: Add host
-      add_host:
-       hostname: "{{ item.name }}"
-       ansible_host: "{{ item.public_v4 }}"
-       group: "{{ item.metadata.deployment_name }}"
-       ansible_ssh_private_key_file: ~/.ssh/openstack.pem
-       ansible_ssh_user: cloud-user
-      loop: "{{ r_os_servers.openstack_servers }}"
+  roles:
+    - osp-facts
 
+- name: testing frontend
+  hosts: frontend
+  gather_facts: false
+  tasks:
     - name: Curl website
       uri:
-        url: "http://{{ item.public_v4 }}/ping"
+        url: "http://{{ ansible_default_ipv4.address }}/ping"
         return_content: yes
         status_code: 200
       register: webpage
       delegate_to: localhost
-      when: "({{ item.name }} is defined) or ({{ item.name }} == 'frontend')"
-      loop: "{{ r_os_servers.openstack_servers }}"
 
     - name: Fail if 'Ansible has done its job' is not in the page content
       fail:

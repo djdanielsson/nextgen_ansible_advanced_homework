@@ -35,7 +35,7 @@
         status_code: 200
       register: webpage
       delegate_to: localhost
-      when: "{{ item.name }} == frontend"
+      when: "({{ item.name }} is defined) and ({{ item.name }} == frontend)"
       loop: "{{ r_os_servers.openstack_servers }}"
 
     - name: Fail if 'Ansible has done its job' is not in the page content

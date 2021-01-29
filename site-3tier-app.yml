@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: workstation
   gather_facts: true
   roles:
   - name: osp-facts
@@ -29,4 +29,3 @@
   roles:
     - {name: base-config, tags: base-config}
     - {name: app-tier, tags: [apps, tomcat]}
-

@@ -15,10 +15,10 @@
     owner: root
     group: root
     mode: 0644
- 
+
 - name: install base tools and packages
   yum:
-    name: '*'
+    name: 'kernel*'
     state: latest
 
 - name: add IP for db to hosts file for app1 and app2
@@ -27,4 +27,3 @@
     insertafter: EOF
     line: "{{ hostvars['db']['ansible_default_ipv4']['address'] }} appdb1"
   when: ansible_nodename == 'app1' or ansible_nodename == 'app2'
-

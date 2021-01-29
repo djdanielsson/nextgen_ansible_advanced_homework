@@ -3,8 +3,8 @@
   package:
     name: "{{ __package }}"
     state: present
-  loop: 
-    - "{{ postgres_rhel7_repo }}"        
+  loop:
+    - "{{ postgres_rhel7_repo }}"
     - "{{ postgres_packages }}"
     - "{{ postgres_library }}"
   loop_control:
@@ -39,10 +39,10 @@
     state: "{{ postgres_service_state | default('started') }}"
     enabled: "{{ postgres_service_enabled | default(true) }}"
 
-- name: Configure Postgres resources, user, database etc 
+- name: Configure Postgres resources, user, database etc
   block:
 
-    - name: Setup Postgres database(s) 
+    - name: Setup Postgres database(s)
       postgresql_db:
         name: "{{ __database.name }}"
         state: "{{ __database.state | default('present') }}"
@@ -50,7 +50,7 @@
       loop_control:
         loop_var: __database
 
-    - name: Create Postgres user#(s) 
+    - name: Create Postgres user#(s)
       postgresql_user:
         name: "{{ __user.name }}"
         password: "{{ __user.password | default(omit) }}"
@@ -62,8 +62,7 @@
       loop: "{{ postgres_users }}"
       loop_control:
         loop_var: __user
-      no_log: "{{ postgres_user_no_log_state | default(false) }}" 
+      no_log: "{{ postgres_user_no_log_state | default(true) }}"
 
 
   become_user: "{{ postgres_user }}"
-

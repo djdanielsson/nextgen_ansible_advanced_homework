@@ -27,6 +27,10 @@
       chmod 0400 /home/cloud-user/.ssh/openstack.pem
   loop: "{{ lookup('dict', osp_servers) }}"
 
+- name: wait 1 min to make sure everything is online
+  pause:
+    minutes: 1
+
 - name: Add floating IP to db instance
   os_floating_ip:
     cloud: openstack
@@ -38,3 +42,6 @@
     timeout: 200
   loop: "{{ lookup('dict', osp_servers) }}"
 
+- name: wait 1 min to make sure everything is online
+  pause:
+    minutes: 1

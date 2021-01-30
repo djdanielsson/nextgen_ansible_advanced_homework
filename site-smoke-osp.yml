@@ -12,14 +12,14 @@
   tasks:
     - name: Curl website
       uri:
-        url: "http://{{ ansible_host }}/ping"
+        url: "http://{{ ansible_host }}"
         return_content: yes
         status_code: 200
       register: webpage
       delegate_to: localhost
 
-    - name: Fail if 'Ping!' is not in the page content
+    - name: Fail if 'Ansible' is not in the page content
       fail:
-      when: "'Ping!' not in webpage.content"
+      when: "'Ansible' not in webpage.content"
       tags:
         - osp.smoke

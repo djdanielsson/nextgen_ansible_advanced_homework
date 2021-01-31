@@ -1,4 +1,5 @@
-- hosts: localhost
+---
+- hosts: workstation
   connection: local
   become: no
   roles:

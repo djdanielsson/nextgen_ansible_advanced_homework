@@ -36,3 +36,12 @@ Author Information
 ------------------
 
 An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+
+------------------
+commands to check osp by hand:
+python3 -m venv ~/openstack-venv
+source openstack-venv/bin/activate
+pip install -U pip
+pip install ansible openstacksdk python-openstackclient selinux
+export OS_CLOUD=openstack
+openstack server list

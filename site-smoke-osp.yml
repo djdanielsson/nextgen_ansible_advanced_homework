@@ -1,6 +1,6 @@
 ---
 - name: smoke test
-  hosts: localhost
+  hosts: workstation
   connection: local
   gather_facts: false
   roles:

@@ -15,7 +15,7 @@
         mode: 0755
 
     - name: get script jq
-      get_url: 
+      get_url:
         url: "{{ param_repo_base }}/scripts/jq-linux64"
         dest: /root/bin/jq
         mode: 0755
@@ -37,7 +37,7 @@
 
     # Fix the existing shell scripts to reference jq command with bin/jq
     - name: fix scripts
-      shell: "sed -i 's/ jq/ bin\\/jq/g' {{ item }}"
+      shell: "sed -i 's/ jq/ bin\/jq/g' {{ item }}"
       with_items:
         - /root/common.sh
         - /root/order_svc.sh
@@ -51,4 +51,4 @@
 
     - name: Wait for mail
       pause:
-        minutes: 10 
+        minutes: 10

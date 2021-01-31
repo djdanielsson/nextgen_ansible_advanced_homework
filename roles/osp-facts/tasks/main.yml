@@ -9,6 +9,7 @@
 - name: debug
   debug:
     msg: "{{ r_os_servers }}"
+    verbosity: 2
 
 - name: Add host
   add_host:

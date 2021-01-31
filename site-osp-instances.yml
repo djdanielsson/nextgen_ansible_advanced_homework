@@ -1,3 +1,4 @@
+---
 - hosts: workstation
   connection: local
   become: no
